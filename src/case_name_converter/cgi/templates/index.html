@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Case name converter</title>
+  </head>
+  <body>
+      <form action="case_name_convert">
+          <table>
+              <tr>
+                  <td>Case name:
+                      {% if case_name %}
+                      <input type="text" name="case_name" value="{{case_name}}"/>
+                      {% else %}
+                      <input type="text" name="case_name"/>
+                      {% endif %}
+                  </td>
+                  <td><input type="submit" value="Convert"/></td>
+              </tr>
+              <tr>
+                  {% if converted_name %}
+                  <td>
+                      {{converted_name}}
+                  </td>
+                  {% endif %}
+              </tr>
+          </table>
+      </form>
+  </body>
+</html>
