@@ -25,6 +25,7 @@ def case_name_convert():
     case_name = request.args.get('case_name')
     if case_name:
         cvt_name = convert_case_name(case_name)
+        cvt_name += '.robot'
     else:
         cvt_name = 'invalid case name'
 
