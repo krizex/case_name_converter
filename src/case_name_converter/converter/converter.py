@@ -15,11 +15,13 @@ REOBJ = re.compile(r'[^\w]+')
 
 
 def convert_case_name(case_name):
+    case_name = case_name.strip()
     if len(case_name) >= 3 and case_name[:3].upper() == 'TC_':
         pass
     else:
         case_name = 'tc_' + case_name
-    return REOBJ.sub('_', case_name)
+    cvt_name = REOBJ.sub('_', case_name)
+    return cvt_name.strip('_')
 
 
 
