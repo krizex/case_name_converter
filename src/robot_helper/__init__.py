@@ -18,7 +18,7 @@ app.register_blueprint(template_generator)
 
 @app.route('/')
 def index():
-    return redirect(url_for('case_name_convert'))
+    return redirect('/file_template')
 
 
 if __name__ == "__main__":

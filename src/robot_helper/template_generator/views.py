@@ -15,19 +15,6 @@ Created on 06/01/2016
 profile = Blueprint('template_generator', __name__, template_folder='templates')
 
 
-@profile.route('/case_name_convert', methods=['POST', 'GET'])
-def case_name_convert():
-    case_name = request.args.get('case_name')
-    if case_name:
-        cvt_name = convert_case_name(case_name)
-        cvt_name += '.robot'
-    else:
-        cvt_name = 'invalid case name'
-
-    return render_template('index.html', case_name=case_name, converted_name=cvt_name)
-
-
-
 @profile.route('/file_template', methods=['POST', 'GET'])
 def file_template():
     case_name = request.args.get('case_name')
