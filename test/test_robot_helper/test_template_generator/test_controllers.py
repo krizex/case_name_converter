@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from case_name_converter.converter.converter import convert_case_name
+from robot_helper.template_generator.controllers import convert_case_name
 
 __author__ = 'David Qian'
 
 """
-Created on 06/01/2016
+Created on 06/28/2016
 @author: David Qian
 
 """

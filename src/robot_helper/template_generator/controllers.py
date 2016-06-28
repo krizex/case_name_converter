@@ -5,7 +5,7 @@ import re
 __author__ = 'David Qian'
 
 """
-Created on 06/01/2016
+Created on 06/28/2016
 @author: David Qian
 
 """
@@ -24,7 +24,5 @@ def convert_case_name(case_name):
     return cvt_name.strip('_')
 
 
-
-
-if __name__ == '__main__':
+def generate_robot_file_template(case_name):
     pass
