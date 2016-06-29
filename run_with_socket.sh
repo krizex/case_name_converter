@@ -1,7 +1,8 @@
 #!/bin/env bash
 
-source venv/falsk/bin/activate
-
+source venv/flask/bin/activate
+echo ${PATH}
+echo `which python`
 cd src
 
 exec uwsgi wsgi_socket_config.ini
