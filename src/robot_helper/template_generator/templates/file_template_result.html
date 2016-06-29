@@ -1,0 +1,65 @@
+{% extends "file_template.html" %}
+{% block result%}
+
+
+{% if not robot_file_name %}
+<p>
+  Invalid case name
+</p>
+{% else %}
+<p>
+  File Name:<button id="btn_file_name">Copy</button>
+  <br>
+  <div id="file_name">
+  {{robot_file_name}}
+  </div>
+</p>
+<p>
+  Template:<button id="btn_file_template">Copy</button>
+  <pre>
+  <div id="file_template">
+*** Settings ***
+Documentation     Please fill test suite documentation
+Resource          ./base.robot
+
+
+
+*** Variables ***
+
+
+*** Test Cases ***
+{{cvt_case_name}}
+    [Documentation]    Please fill test case documentation
+    [Tags]       @author={{author_name}}     @TCID={{tcid}}
+    [Setup]      case setup
+    [Teardown]   case teardown
+
+
+
+*** Keywords ***
+case setup
+    [Documentation]
+    [Arguments]
+
+
+case teardown
+    [Documentation]
+    [Arguments]
+              </div>
+</pre>
+
+      </p>
+      {% endif %}
+
+<script>
+  $(document).ready(function() {
+      $('#btn_file_name').click(function() {
+        alert('Not Implemented')
+      })
+      $('#btn_file_template').click(function() {
+        alert('Not Implemented')
+      })
+  }
+  )
+</script>
+{% endblock %}
