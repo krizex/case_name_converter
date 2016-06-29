@@ -8,20 +8,21 @@
 </p>
 {% else %}
 <p>
-  File Name:<button id="btn_file_name">Copy</button>
+
   <br>
-  <div id="file_name">
-  {{robot_file_name}}
+  <br>
+  File Name:<button id="btn_file_name" class="copy-button" data-clipboard-target="file_name">Copy</button>
+  <br>
+  <div>
+  <b id="file_name">{{robot_file_name}}</b>
   </div>
 </p>
 <p>
-  Template:<button id="btn_file_template">Copy</button>
+  Template:<button id="btn_file_template" class="copy-button" data-clipboard-target="file_template">Copy</button>
   <pre>
-  <div id="file_template">
-*** Settings ***
+  <div id="file_template">*** Settings ***
 Documentation     Please fill test suite documentation
 Resource          ./base.robot
-
 
 
 *** Variables ***
@@ -35,7 +36,6 @@ Resource          ./base.robot
     [Teardown]   case teardown
 
 
-
 *** Keywords ***
 case setup
     [Documentation]
@@ -45,20 +45,23 @@ case setup
 case teardown
     [Documentation]
     [Arguments]
-              </div>
+</div>
 </pre>
 
       </p>
       {% endif %}
 
+<script type="text/javascript" src="static/js/ZeroClipboard/ZeroClipboard.min.js"></script>
 <script>
+
   $(document).ready(function() {
-      $('#btn_file_name').click(function() {
-        alert('Not Implemented')
-      })
-      $('#btn_file_template').click(function() {
-        alert('Not Implemented')
-      })
+    var client = new ZeroClipboard($('.copy-button'));
+    client.on("copy", function (event) {
+      var clipboard = event.clipboardData;
+      //clipboard.setData( "text/plain", "file_template" );
+      //alert('aaa')
+    });
+
   }
   )
 </script>
