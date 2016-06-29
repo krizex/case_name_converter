@@ -21,7 +21,9 @@
   Template:<button id="btn_file_template" class="copy-button" data-clipboard-target="file_template">Copy</button>
   <pre>
   <div id="file_template">*** Settings ***
-Documentation     Please fill test suite documentation
+Documentation     {% for line in suite_doc -%}
+    {{ line }}
+{% endfor -%}
 Resource          ./base.robot
 
 
@@ -30,10 +32,16 @@ Resource          ./base.robot
 
 *** Test Cases ***
 {{cvt_case_name}}
-    [Documentation]    Please fill test case documentation
+    [Documentation]    {% for line in case_doc -%}
+    {{ line }}
+    {% endfor -%}
     [Tags]       @author={{form.author_name.data}}     @TCID={{form.tcid.data}}
     [Setup]      case setup
     [Teardown]   case teardown
+    {% for line in log_lines %}
+    {{ line }}
+
+    {% endfor %}
 
 
 *** Keywords ***

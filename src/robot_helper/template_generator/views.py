@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import Flask, request, render_template, Blueprint
-from robot_helper.template_generator.controllers import convert_case_name
+from robot_helper.template_generator.controllers import convert_case_name, split_doc, parse_doc_lines_to_log_lines
 from robot_helper.template_generator.forms import CaseInfoForm
 
 __author__ = 'David Qian'
@@ -27,5 +27,15 @@ def file_template():
             robot_file_name = cvt_case_name + '.robot'
         else:
             cvt_case_name = None
+
+        suite_doc, _ = split_doc(form.suite_doc.data, prefix='...    ')
+        case_doc, origin_case_doc = split_doc(form.case_doc.data, prefix='    ...    ')
+        log_lines = parse_doc_lines_to_log_lines(origin_case_doc)
+
+        if not suite_doc:
+            suite_doc = ['']
+
+        if not case_doc:
+            case_doc = ['']
 
         return render_template('file_template_result.html', **locals())
