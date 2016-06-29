@@ -30,7 +30,7 @@ Resource          ./base.robot
 *** Test Cases ***
 {{cvt_case_name}}
     [Documentation]    Please fill test case documentation
-    [Tags]       @author={{author_name}}     @TCID={{tcid}}
+    [Tags]       @author={{form.author_name.data}}     @TCID={{form.tcid.data}}
     [Setup]      case setup
     [Teardown]   case teardown
 
