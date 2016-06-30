@@ -31,7 +31,26 @@
 {% block result%}
 {% endblock %}
 
+<script type="text/javascript" src="static/js/ZeroClipboard/ZeroClipboard.min.js"></script>
+<script>
 
+  $(document).ready(function() {
+    var client = new ZeroClipboard($('.copy-button'));
+    client.on("copy", function (event) {
+      var clipboard = event.clipboardData;
+      //clipboard.setData( "text/plain", "file_template" );
+      //alert('aaa')
+    });
 
+    $("input:text").click(function(){
+      $(this).select();
+    });
+
+    $("textarea").click(function(){
+      $(this).select();
+    });
+  }
+  );
+</script>
 </body>
 </html>
