@@ -20,39 +20,7 @@
 <p>
   Template:<button id="btn_file_template" class="copy-button" data-clipboard-target="file_template">Copy</button>
   <pre>
-  <div id="file_template">*** Settings ***
-Documentation     {% for line in suite_doc -%}
-    {{ line }}
-{% endfor -%}
-Resource          ./base.robot
-
-
-*** Variables ***
-
-
-*** Test Cases ***
-{{cvt_case_name}}
-    [Documentation]    {% for line in case_doc -%}
-    {{ line }}
-    {% endfor -%}
-    [Tags]       @author={{form.author_name.data}}     @TCID={{form.tcid.data}}
-    [Setup]      case setup
-    [Teardown]   case teardown
-    {% for line in log_lines %}
-    {{ line }}
-
-    {% endfor %}
-
-
-*** Keywords ***
-case setup
-    [Documentation]
-    [Arguments]
-
-
-case teardown
-    [Documentation]
-    [Arguments]
+  <div id="file_template">{{ robot_file_stream }}
 </div>
 </pre>
 

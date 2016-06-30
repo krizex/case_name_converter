@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 from flask import Flask, request, render_template, Blueprint
+from jinja2 import Template
 from robot_helper.template_generator.controllers import convert_case_name, split_doc, parse_doc_lines_to_log_lines
 from robot_helper.template_generator.forms import CaseInfoForm
 
@@ -37,5 +39,10 @@ def file_template():
 
         if not case_doc:
             case_doc = ['']
+
+        case_setup_name = form.tcid.data + ' setup' if form.tcid.data else 'case setup'
+        case_teardown_name = form.tcid.data + ' teardown' if form.tcid.data else 'case teardown'
+
+        robot_file_stream = render_template('template.robot', **locals())
 
         return render_template('file_template_result.html', **locals())

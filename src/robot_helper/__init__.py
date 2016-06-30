@@ -13,6 +13,7 @@ Created on 06/28/2016
 
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
 
 app.register_blueprint(template_generator)
 
