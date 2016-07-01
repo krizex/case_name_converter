@@ -16,5 +16,5 @@ class CaseInfoForm(Form):
     case_name = StringField('Case Name:')
     author_name = StringField('@author:')
     tcid = StringField('@TCID:')
-    suite_doc = TextAreaField('Suite Documentation:', default='Please fill test suite documentation.')
-    case_doc = TextAreaField('Case Documentation:', default='Please fill test case documentation.')
+    suite_doc = TextAreaField('Suite Documentation:')
+    case_doc = TextAreaField('Case Documentation:')

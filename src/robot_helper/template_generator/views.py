@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
-from flask import Flask, request, render_template, Blueprint
-from jinja2 import Template
+from flask import request, render_template, Blueprint
 from robot_helper.template_generator.controllers import convert_case_name, split_doc, parse_doc_lines_to_log_lines
 from robot_helper.template_generator.forms import CaseInfoForm
 

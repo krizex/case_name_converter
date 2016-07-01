@@ -11,19 +11,23 @@
 
   <br>
   <br>
-  File Name:<button id="btn_file_name" class="copy-button" data-clipboard-target="file_name">Copy</button>
-  <br>
-  <div>
-  <b id="file_name">{{robot_file_name}}</b>
-  </div>
+  <span class="label label-primary lb-lg">File Name</span> <b id="file_name">{{robot_file_name}}</b>
+  <button type="button" class="btn btn-success">
+  <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_name"> Copy</span>
+  </button>
 </p>
 <p>
-  Template:<button id="btn_file_template" class="copy-button" data-clipboard-target="file_template">Copy</button>
+  <span class="label label-primary lb-lg">Template</span>
+  <button type="button" class="btn btn-success">
+  <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_template"> Copy</span>
+  </button>
+  <button type="button" class="btn btn-primary hidden">
+  <span class="glyphicon glyphicon-download"> Download</span>
+  </button>
   <pre>
   <div id="file_template">{{ robot_file_stream }}
 </div>
 </pre>
-
-      </p>
+  </p>
 {% endif %}
 {% endblock %}
