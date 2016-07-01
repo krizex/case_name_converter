@@ -6,8 +6,18 @@
   <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
   <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
   <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    #tip {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: none;
+      z-index: 9999;
+    }
+  </style >
 </head>
 <body>
+<strong id="tip"></strong>
 {% block body %}
 {% endblock %}
 </body>
