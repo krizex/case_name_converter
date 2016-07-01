@@ -26,8 +26,10 @@ Resource          ./base.robot
 {{ case_setup_name }}
     [Documentation]
     [Arguments]
+    log    Enter {{ case_setup_name }}
 
 
 {{ case_teardown_name }}
     [Documentation]
     [Arguments]
+    log    Enter {{ case_teardown_name }}
