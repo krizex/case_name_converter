@@ -4,6 +4,7 @@ import hashlib
 import time
 
 import re
+from robot_helper import redis_store
 
 __author__ = 'David Qian'
 
@@ -58,8 +59,6 @@ def parse_doc_lines_to_log_lines(doc_lines):
 
 
 def save_file_template(file_name, file_content):
-    from robot_helper import redis_store
-
     hash_key = generate_hash_key(file_name, file_content)
     d = {
         'file_name': file_name,
@@ -71,7 +70,6 @@ def save_file_template(file_name, file_content):
 
 
 def search_file_template(hash_key):
-    from robot_helper import redis_store
     d = redis_store.hgetall(hash_key)
     return d['file_name'], d['file_content']
 
