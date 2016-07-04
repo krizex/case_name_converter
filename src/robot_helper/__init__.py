@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import Flask, redirect, url_for, flash
+from flask import Flask, redirect, url_for
+from flask.ext.redis import FlaskRedis
 from robot_helper.template_generator.views import profile as template_generator
 
 __author__ = 'David Qian'
@@ -16,6 +17,7 @@ app = Flask(__name__)
 app.jinja_env.trim_blocks = True
 
 app.register_blueprint(template_generator)
+redis_store = FlaskRedis(app)
 
 
 @app.route('/')

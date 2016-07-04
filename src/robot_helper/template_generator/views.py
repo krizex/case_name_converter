@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import request, render_template, Blueprint
-from robot_helper.template_generator.controllers import convert_case_name, split_doc, parse_doc_lines_to_log_lines
+from flask import request, render_template, Blueprint, make_response
+from robot_helper.template_generator.controllers import convert_case_name, split_doc, parse_doc_lines_to_log_lines, \
+    save_file_template, search_file_template
 from robot_helper.template_generator.forms import CaseInfoForm
 
 __author__ = 'David Qian'
@@ -27,6 +28,7 @@ def file_template():
             robot_file_name = cvt_case_name + '.robot'
         else:
             cvt_case_name = None
+            return render_template('file_template_result.html', **locals())
 
         suite_doc, _ = split_doc(form.suite_doc.data, prefix='...    ')
         case_doc, origin_case_doc = split_doc(form.case_doc.data, prefix='    ...    ')
@@ -43,4 +45,20 @@ def file_template():
 
         robot_file_stream = render_template('template.robot', **locals())
 
+        file_id = save_file_template(robot_file_name, robot_file_stream)
+        file_link = '/'.join(['http://' + request.host, 'download_file', file_id])
+
         return render_template('file_template_result.html', **locals())
+
+
+@profile.route('/download_file/<file_id>', methods=['GET'])
+def download_file(file_id):
+    try:
+        ret = search_file_template(file_id)
+    except KeyError:
+        return 'Invalid file id %s' % file_id
+
+    content = ret[1]
+    response = make_response(content)
+    response.headers["Content-Disposition"] = "attachment; filename=%s" % (ret[0])
+    return response

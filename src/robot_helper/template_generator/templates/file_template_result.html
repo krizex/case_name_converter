@@ -21,9 +21,13 @@
   <button type="button" class="btn btn-success">
   <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_template"> Copy</span>
   </button>
+  <button type="button" class="btn btn-primary">
+  <span class="glyphicon glyphicon-share copy-button" data-clipboard-target="file_link"> Share</span>
+  </button>
   <button type="button" class="btn btn-primary hidden">
   <span class="glyphicon glyphicon-download"> Download</span>
   </button>
+  <div id="file_link" class="hidden">{{ file_link }}</div>
   <pre>
   <div id="file_template">{{ robot_file_stream }}
 </div>

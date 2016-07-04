@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import hashlib
+import time
+
 import re
 
 __author__ = 'David Qian'
@@ -54,5 +57,31 @@ def parse_doc_lines_to_log_lines(doc_lines):
     return doc_lines
 
 
+def save_file_template(file_name, file_content):
+    from robot_helper import redis_store
 
+    hash_key = generate_hash_key(file_name, file_content)
+    d = {
+        'file_name': file_name,
+        'file_content': file_content,
+    }
+    ret = redis_store.hmset(hash_key, d)
+    print ret
+    return hash_key
+
+
+def search_file_template(hash_key):
+    from robot_helper import redis_store
+    d = redis_store.hgetall(hash_key)
+    return d['file_name'], d['file_content']
+
+
+def generate_hash_key(*contents):
+    time_stamp = time.localtime(time.time())
+    time_str = time.strftime('%Y%m%d%H%M%S', time_stamp)
+    algo = hashlib.md5()
+    for c in contents:
+        algo.update(c)
+    hash_key = time_str + algo.hexdigest()
+    return hash_key
 
