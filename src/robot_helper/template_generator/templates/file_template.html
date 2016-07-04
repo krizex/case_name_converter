@@ -31,17 +31,8 @@
     {% endblock %}
   </div>
 
-  <script type="text/javascript" src="static/js/lib/ZeroClipboard/ZeroClipboard.min.js"></script>
   <script>
     $(document).ready(function() {
-      var client = new ZeroClipboard($('.copy-button'));
-      client.on("copy", function (event) {
-        var clipboard = event.clipboardData;
-        //clipboard.setData( "text/plain", "file_template" );
-        //alert('aaa')
-        ShowSuccess('Copied to clipboard');
-      });
-
       $("input:text").click(function(){
         $(this).select();
       });
@@ -50,35 +41,5 @@
         $(this).select();
       });
     });
-
-    function ShowTip(tip, type) {
-      var $tip = $('#tip');
-      if ($tip.length == 0) {
-        $tip = $('<strong id="tip" style="position:absolute;top:50px;left: 50%;z-index:9999"></strong>');
-        $('body').append($tip);
-      }
-      $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', -$tip.outerWidth() / 2).fadeIn(500).delay(2000).fadeOut(500);
-    }
-
-    function ShowMsg(msg) {
-      ShowTip(msg, 'info');
-    }
-
-    function ShowSuccess(msg) {
-      ShowTip(msg, 'success');
-    }
-
-    function ShowFailure(msg) {
-      ShowTip(msg, 'danger');
-    }
-
-    function ShowWarn(msg, $focus, clear) {
-      ShowTip(msg, 'warning');
-      if ($focus) {
-        $focus.focus();
-        if (clear) $focus.val('');
-      }
-      return false;
-    }
   </script>
 {% endblock %}

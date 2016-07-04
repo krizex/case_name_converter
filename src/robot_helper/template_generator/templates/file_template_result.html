@@ -12,16 +12,16 @@
   <br>
   <br>
   <span class="label label-default lb-lg">File Name</span> <b id="file_name">{{robot_file_name}}</b>
-  <button type="button" class="btn btn-primary">
+  <button type="button" class="btn btn-primary show-action">
   <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_name"> Copy</span>
   </button>
 </p>
 <p>
   <span class="label label-default lb-lg">Template</span>
-  <button type="button" class="btn btn-primary">
+  <button type="button" class="btn btn-primary show-action">
   <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_template"> Copy</span>
   </button>
-  <button type="button" class="btn btn-primary">
+  <button type="button" class="btn btn-primary show-action">
   <span class="glyphicon glyphicon-share copy-button" data-clipboard-target="file_link"> Share</span>
   </button>
   <button type="button" class="btn btn-primary" onclick="window.open('{{ file_link }}')">
@@ -29,9 +29,59 @@
   </button>
   <div id="file_link" class="hidden">{{ file_link }}</div>
   <pre>
-  <div id="file_template">{{ robot_file_stream }}
-</div>
-</pre>
-  </p>
+    <div id="file_template">{{ robot_file_stream }}</div>
+  </pre>
+</p>
 {% endif %}
+  <script type="text/javascript" src="static/js/lib/ZeroClipboard/ZeroClipboard.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var client = new ZeroClipboard($('.copy-button'));
+      client.on("copy", function (event) {
+        var clipboard = event.clipboardData;
+        //clipboard.setData( "text/plain", "file_template" );
+        //alert('aaa')
+      });
+
+      $('button.show-action').click(function() {
+        var my_pos = $(this).offset();
+        console.log(my_pos);
+        $('#tip').show()
+        $('#tip').offset({left:my_pos.left+100, top:my_pos.top-50});
+        console.log($('#tip').offset());
+        ShowSuccess('Copied!');
+      });
+
+    });
+
+    function ShowTip(tip, type) {
+      var $tip = $('#tip');
+      if ($tip.length == 0) {
+        $tip = $('<strong id="tip" style="position:absolute;top:50px;left: 50%;z-index:9999"></strong>');
+        $('body').append($tip);
+      }
+      $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', -$tip.outerWidth() / 2).fadeIn(500).fadeOut(500);
+    }
+
+    function ShowMsg(msg) {
+      ShowTip(msg, 'info');
+    }
+
+    function ShowSuccess(msg) {
+      ShowTip(msg, 'success');
+    }
+
+    function ShowFailure(msg) {
+      ShowTip(msg, 'danger');
+    }
+
+    function ShowWarn(msg, $focus, clear) {
+      ShowTip(msg, 'warning');
+      if ($focus) {
+        $focus.focus();
+        if (clear) $focus.val('');
+      }
+      return false;
+    }
+  </script>
 {% endblock %}
