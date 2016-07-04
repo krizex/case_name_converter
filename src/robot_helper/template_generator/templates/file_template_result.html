@@ -11,20 +11,20 @@
 
   <br>
   <br>
-  <span class="label label-primary lb-lg">File Name</span> <b id="file_name">{{robot_file_name}}</b>
-  <button type="button" class="btn btn-success">
+  <span class="label label-default lb-lg">File Name</span> <b id="file_name">{{robot_file_name}}</b>
+  <button type="button" class="btn btn-primary">
   <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_name"> Copy</span>
   </button>
 </p>
 <p>
-  <span class="label label-primary lb-lg">Template</span>
-  <button type="button" class="btn btn-success">
+  <span class="label label-default lb-lg">Template</span>
+  <button type="button" class="btn btn-primary">
   <span class="glyphicon glyphicon-file copy-button" data-clipboard-target="file_template"> Copy</span>
   </button>
   <button type="button" class="btn btn-primary">
   <span class="glyphicon glyphicon-share copy-button" data-clipboard-target="file_link"> Share</span>
   </button>
-  <button type="button" class="btn btn-primary hidden">
+  <button type="button" class="btn btn-primary" onclick="window.open('{{ file_link }}')">
   <span class="glyphicon glyphicon-download"> Download</span>
   </button>
   <div id="file_link" class="hidden">{{ file_link }}</div>
