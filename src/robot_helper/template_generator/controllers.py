@@ -65,7 +65,7 @@ def save_file_template(file_name, file_content):
         'file_content': file_content,
     }
     if redis_store.hmset(hash_key, d):
-        redis_store.expire(hash_key, 24 * 60 * 60)
+        redis_store.expire(hash_key, 30 * 24 * 60 * 60)
     return hash_key
 
 
