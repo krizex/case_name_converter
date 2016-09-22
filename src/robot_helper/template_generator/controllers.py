@@ -79,7 +79,7 @@ def generate_hash_key(*contents):
     time_str = time.strftime('%Y%m%d%H%M%S', time_stamp)
     algo = hashlib.md5()
     for c in contents:
-        algo.update(c)
+        algo.update(c.encode('utf-8'))
     hash_key = time_str + algo.hexdigest()
     return hash_key
 
